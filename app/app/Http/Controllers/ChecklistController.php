@@ -12,7 +12,7 @@ class ChecklistController extends Controller
      */
     public function index()
     {
-        //
+        return Checklist::all();
     }
 
     /**
@@ -20,7 +20,14 @@ class ChecklistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        $checklist = Checklist::create($validated);
+
+        return response()->json($checklist, 201);
     }
 
     /**
@@ -28,7 +35,7 @@ class ChecklistController extends Controller
      */
     public function show(Checklist $checklist)
     {
-        //
+        return $checklist->load(['tasks']);
     }
 
     /**
@@ -36,7 +43,14 @@ class ChecklistController extends Controller
      */
     public function update(Request $request, Checklist $checklist)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['sometimes','required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        $checklist->update($validated);
+
+        return response()->json($checklist);
     }
 
     /**
@@ -44,6 +58,7 @@ class ChecklistController extends Controller
      */
     public function destroy(Checklist $checklist)
     {
-        //
+        $checklist->delete();
+        return response()->json(null, 204);
     }
 }
