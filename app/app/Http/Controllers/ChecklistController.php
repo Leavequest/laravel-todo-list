@@ -61,4 +61,15 @@ class ChecklistController extends Controller
         $checklist->delete();
         return response()->json(null, 204);
     }
+
+    public function tasks(Checklist $checklist)
+    {
+        return $checklist->tasks;
+    }
+
+    public function clearTasks(Checklist $checklist)
+    {
+        $checklist->tasks()->delete();
+        return response()->json(null, 204);
+    }
 }
