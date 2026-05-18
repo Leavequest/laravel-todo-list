@@ -15,6 +15,8 @@ Route::apiResource('tasks', TaskController::class);
 
 Route::get('/checklists/{checklist}/tasks', [ChecklistController::class, 'tasks']);
 
-Route::post('/tasks/{task}/toggle', [TaskController::class, 'toggle']);
+Route::post('/checklists/{checklist}/tasks', [ChecklistController::class, 'addTask']);
+
+Route::put('/tasks/{task}/toggle', [TaskController::class, 'toggle']);
 
 Route::delete('/checklists/{checklist}/tasks', [ChecklistController::class, 'clearTasks']);

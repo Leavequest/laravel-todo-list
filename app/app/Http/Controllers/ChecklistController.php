@@ -72,4 +72,16 @@ class ChecklistController extends Controller
         $checklist->tasks()->delete();
         return response()->json(null, 204);
     }
+
+    public function addTask(Request $request, Checklist $checklist)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'is_completed' => ['boolean'],
+        ]);
+
+        $task = $checklist->tasks()->create($validated);
+
+        return response()->json($task, 201);
+    }
 }
