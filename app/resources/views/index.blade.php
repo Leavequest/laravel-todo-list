@@ -6,6 +6,10 @@
     <title>To-Do List</title>
 </head>
 <body>
+    
+    @stack('resources/js/main.js')
+    @stack('resources/js/api.js')
+    
     <header>
         <h1>To-Do List</h1>
     </header>
@@ -22,14 +26,14 @@
     </section><br>
     
     <div>
-        <button id="new-checklist">+</button> Add list
+        <button id="new-checklist-btn">+</button> Add list
         <div id="checklist-task-flex"></div>
     </div>
     <br>
 
     <input type="text" name="add-task" id="add-task" placeholder="Task:">
+
     
-    <script src="js/main.js"></script>
-    <script src="js/api.js"></script>
+    
 </body>
 </html>
