@@ -1,0 +1,80 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.index-header {
+    margin: 0;
+    padding: 0.2rem;
+    background-color: azure;
+    text-align: center;
+}
+
+.checklists-section {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+.checklists-section table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    border-radius: 1px;
+}
+ 
+.checklists-section th{
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 1px;
+    background-color: #f2f2f2;
+}  
+
+.checklists-section td {
+    border: 1px solid #000;
+    border-radius: 1px;
+    padding: 0.5rem;
+}
+
+.checklists-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-input {
+    display: block;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.form-input:focus {
+    outline: none;
+    border-bottom-color: #007bff;
+}
+
+.form-input:focus::placeholder {
+    color: #aaa;
+}
+
+.checklists-form #new-checklist-btn {
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+#checklists-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: start;
+}

@@ -8,10 +8,10 @@ const addTask = document.getElementById('add-task');
 
 window.addEventListener('load', () => {
     console.log('List loaded');
-    loadlists();
+    loadchecklists();
 })
 
-function loadlists(name, description) {
+function loadchecklists(name, description) {
     checklistContainer.innerHTML = "";
     checklistTaskFlex.innerHTML = "";
     apiRequest(host + '/checklists', 'GET', {})
@@ -52,7 +52,7 @@ newChecklistBtn.addEventListener('click', () => {
         .then(() => {
             checklistName.value = '';
             checklistDesc.value = '';
-            loadlists();
+            loadchecklists();
         })
         .catch(error => {
             console.error('Error creating checklist:', error);
