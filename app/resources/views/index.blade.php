@@ -6,10 +6,9 @@
     <title>To-Do List</title>
 </head>
 <body>
-    
-    @stack('resources/js/main.js')
-    @stack('resources/js/api.js')
-    
+    <script src="/js/api.js" defer></script>
+    <script src="/js/main.js" defer></script>
+
     <header>
         <h1>To-Do List</h1>
     </header>
@@ -33,7 +32,5 @@
 
     <input type="text" name="add-task" id="add-task" placeholder="Task:">
 
-    
-    
 </body>
 </html>

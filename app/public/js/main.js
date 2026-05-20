@@ -1,5 +1,5 @@
 const host = "http://localhost:8000/api";
-const checklistContainer = document.getElementById('checklist-container');
+const checklistContainer = document.getElementById('checklists-container');
 const checklistName = document.getElementById('checklist-name');
 const checklistDesc = document.getElementById('checklist-desc');
 const newChecklistBtn = document.getElementById('new-checklist-btn');
@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
 function loadlists(name, description) {
     checklistContainer.innerHTML = "";
     checklistTaskFlex.innerHTML = "";
-    apiRequest(host + '/checklists', 'GET',{ name, description })
+    apiRequest(host + '/checklists', 'GET', {})
         .then(data => {
             const table = document.createElement("table");
 
@@ -30,26 +30,31 @@ function loadlists(name, description) {
             for (const checklist of data) {
                 const row = document.createElement('tr');
                 const nameCell = document.createElement('td');
-                nameCell.textContent = checklist.name;
+                nameCell.innerHTML = checklist.name;
                 const descCell = document.createElement('td');
-                descCell.textContent = checklist.description;
+                descCell.innerHTML = checklist.description;
                 row.appendChild(nameCell);
                 row.appendChild(descCell);
                 table.appendChild(row);
         }
 
-            checklistContainer.appendChild(table);
+        checklistContainer.appendChild(table);
     })
 }
 
 newChecklistBtn.addEventListener('click', () => {
-    const name = checklistName.value;
-    const description = checklistDesc.value;
+    const body = {
+        name: checklistName.value,
+        description: checklistDesc.value
+    };
 
-    apiRequest(host + '/checklists', 'POST', { name, description })
+    apiRequest(host + '/checklists', 'POST', body)
         .then(() => {
             checklistName.value = '';
             checklistDesc.value = '';
             loadlists();
         })
+        .catch(error => {
+            console.error('Error creating checklist:', error);
+    });
 })
