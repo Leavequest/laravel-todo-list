@@ -104,7 +104,7 @@ function createTaskListItem(task) {
         const body = {
             is_completed: taskCheckbox.checked
         };
-        apiRequest(host + `/tasks/${task.id}`, 'PUT', body)
+        apiRequest(host + `/tasks/${task.id}/toggle`, 'PUT', body)
             .then(() => {
                 console.log("Task updated successfully");
             })
@@ -117,8 +117,15 @@ function createTaskListItem(task) {
     taskName.innerHTML = task.name;
     taskName.contentEditable = true;
     taskName.addEventListener('blur', () => {
+        const updatedName = taskName.textContent.trim();
+
+        if (updatedName === "") {
+            taskName.textContent = task.name;
+            return;
+        }
+
         const body = {
-            name: taskName.innerHTML
+            name: updatedName
         };
         apiRequest(host + `/tasks/${task.id}`, 'PUT', body)
             .then(() => {
@@ -129,8 +136,23 @@ function createTaskListItem(task) {
             });
     });
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = "x";
+    
+    deleteBtn.addEventListener('click', () => {
+        apiRequest(host + `/tasks/${task.id}`, 'DELETE', {})
+            .then(() => {
+                taskListItem.remove();
+                console.log("Task deleted successfully");
+            })
+            .catch(error => {
+                console.error("Error deleting task:", error);
+            });
+    });
+
     taskListItem.appendChild(taskCheckbox);
     taskListItem.appendChild(taskName);
+    taskListItem.appendChild(deleteBtn);
 
     return taskListItem;
 }
