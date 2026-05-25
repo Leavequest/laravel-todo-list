@@ -33,11 +33,10 @@
     <section class="checklists-section">
         <h2>Tasks</h2>
         <div id="checklist-task-flex">
-
+            
         </div>
     </section>
         
-    <input type="text" name="add-task" id="add-task" placeholder="Task:">
 
 </body>
 </html>
