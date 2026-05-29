@@ -117,24 +117,16 @@ function createTaskListItem(task) {
     taskName.innerHTML = task.name;
     taskName.contentEditable = true;
     taskName.addEventListener('blur', () => {
-        const updatedName = taskName.textContent.trim();
-
-        if (updatedName === "") {
-            taskName.textContent = task.name;
-            return;
-        }
-
-        const body = {
-            name: updatedName
-        };
-        apiRequest(host + `/tasks/${task.id}`, 'PUT', body)
-            .then(() => {
-                console.log("Task updated successfully");
-            })
-            .catch(error => {
-                console.error("Error updating task:", error);
-            });
+        updateTaskName(task.id, taskName.textContent);
     });
+    taskName.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            taskName.blur();
+        }
+    });
+
+
 
     const deleteBtn = document.createElement('button');
     deleteBtn.innerHTML = "x";
@@ -158,13 +150,33 @@ function createTaskListItem(task) {
 }
 
 
+function updateTaskName(taskId, newName) {
+    const updatedName = newName.trim();
+
+        if (updatedName === "") {
+            taskName.textContent = task.name;
+            return;
+        }
+
+        const body = {
+            name: updatedName
+        };
+        apiRequest(host + `/tasks/${taskId}`, 'PUT', body)
+            .then(() => {
+                console.log("Task updated successfully");
+            })
+            .catch(error => {
+                console.error("Error updating task:", error);
+            });
+}
+
 
 newChecklistBtn.addEventListener('click', () => {
     const body = {
         name: checklistName.value,
         description: checklistDesc.value
     };
-
+     
     apiRequest(host + '/checklists', 'POST', body)
         .then(() => {
             checklistName.value = "";

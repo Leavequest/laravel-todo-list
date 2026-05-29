@@ -143,3 +143,15 @@ body {
     border-bottom-color: #007bff;
     transition: all 150ms ease-in;
 }
+
+#checklist-task-flex li input[type="text"]:focus::placeholder {
+    color: #aaa;
+}
+
+#checklist-task-flex li button {
+    background-color: transparent;
+    border: none;
+    align-self: end;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
