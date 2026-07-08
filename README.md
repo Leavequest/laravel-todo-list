@@ -29,3 +29,9 @@ docker compose exec app /bin/bash
 ```bash
 php artisan key:generate
 ```
+
+## Todo
+
+- [ ] Better UI in React
+- [ ] Admin dashboard to manage users
+- [ ] Admin specific APIs
