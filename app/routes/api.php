@@ -16,6 +16,15 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return response()->json([
+            'message' => 'Welcome, admin!',
+            ]);
+    });
+});
+
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
