@@ -1,11 +1,9 @@
 # Todo list manager
 
----
 Simple to-do list built with Laravel to get familiarized with REST API concepts
 
 ## Get Started
 
----
 
 1. Copy the reèpsitory
 
