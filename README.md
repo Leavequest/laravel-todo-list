@@ -5,7 +5,7 @@ Simple to-do list built with Laravel to get familiarized with REST API concepts
 ## Get Started
 
 
-1. Copy the reèpsitory
+1. Copy the repsitory
 
 ```bash
 mkdir todo-list
