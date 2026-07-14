@@ -15,6 +15,7 @@ export default defineConfig({
             ],
         }),
         tailwindcss(),
+        react(),
     ],
     server: {
         watch: {

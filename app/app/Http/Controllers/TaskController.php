@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Checklist;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TaskController extends Controller
 {
@@ -38,7 +39,10 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return $task->load('checklist');
+        // return $task->load('checklist');
+        return Inertia::render('Tasks/Show', [
+            'task' => $task->load('checklist'),
+        ]);
     }
 
     /**
